@@ -31,10 +31,7 @@ console.log(res);
   <ul>
   <li>Public Repositories: ${res.data.public_repos}</li>
   <li>Followers: ${res.data.followers}</li>
-  <li>Followed by: ${res.data.following}</li>
-  </ul>
-  </body>
-  </html>`;
+  <li>Followed by: ${res.data.following}</li>`;
 
   fs.writeFile("index.html", profile, function(err) {
     if (err) {
@@ -47,7 +44,23 @@ console.log(res);
 
 axios.get(queryUrl2).then(function(res) {
 
-  console.log(res);
- /* const stars = ${} */
+ // console.log(res);
+  var stars = 0;
+  for (i = 0; i < res.data.length; i++){
+    stars += res.data[1].stargazers_count;
+  }
+  console.log(stars);
+
+  const starCount = `<li>Stars: ${stars}</li>
+  </ul>
+  </body>
+  </html>`;
+
+  fs.appendFile("index.html", starCount, function(err) {
+    if (err) {
+      throw err;
+    }
+  /* const stars = ${} */
+});
 });
 });
