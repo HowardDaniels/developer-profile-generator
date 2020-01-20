@@ -60,7 +60,49 @@ axios.get(queryUrl2).then(function(res) {
     if (err) {
       throw err;
     }
+
+    convertFactory = require('electron-html-to');
+
+    fs.readFile('index.html', 'utf8', (err, htmlString) => {
+      "/index.html"
+      htmlString = htmlString.replace(/href="|src="/g, match => {
+        return match + 'file://path/to/you/base/public/directory';
+      });
+    });
+ 
+    var conversion = convertFactory({
+      converterPath: convertFactory.converters.PDF
+    });
+     
+    conversion("index.html", function(err, result) {
+      if (err) {
+        return console.error(err);
+      }
+     
+      console.log(result.numberOfPages);
+      console.log(result.logs);
+      result.stream.pipe(fs.createWriteStream('/path/to/anywhere.pdf'));
+      conversion.kill(); // necessary if you use the electron-server strategy, see below for details
+    });
   /* const stars = ${} */
 });
 });
 });
+/*
+//var fs = require('fs'),
+    convertFactory = require('electron-html-to');
+ 
+var conversion = convertFactory({
+  converterPath: convertFactory.converters.PDF
+});
+ 
+conversion({ html: "index.html"}, function(err, result) {
+  if (err) {
+    return console.error(err);
+  }
+ 
+  console.log(result.numberOfPages);
+  console.log(result.logs);
+  result.stream.pipe(fs.createWriteStream('/path/to/anywhere.pdf'));
+  conversion.kill(); // necessary if you use the electron-server strategy, see below for details
+}); */
