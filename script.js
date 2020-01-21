@@ -15,6 +15,9 @@ axios.get(queryUrl).then(function(res) {
   
 console.log(res);
 
+var location = res.data.location;
+var mapsPlace = location.split(' ').replace('+');
+
   const profile = `<html>
   <head>
   </head>
@@ -24,7 +27,7 @@ console.log(res);
   <img src="${res.data.avatar_url}">
   <br>
   <a href="${res.data.url}">Link to Profile</a>
-  <p>Location: ${res.data.location}</p>
+  <p>Location:<a href="https://www.google.com/maps/place/${mapsPlace}">${res.data.location}</a></p>
   <p>${res.data.bio}</p>
   <br>
   <h2>Stats</h2>
