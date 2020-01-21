@@ -3,10 +3,15 @@ const axios = require("axios");
 const inquirer = require("inquirer");
 
 inquirer
-  .prompt({
-    message: "Enter your GitHub username",
+  .prompt([{
+    message: "Enter your GitHub username.",
     name: "username"
-  })
+  },
+  {
+    message: "What color would you like as your resume background?",
+    name: "color"
+  }
+])
   .then(function({ username }) {
     const queryUrl = `https://api.github.com/users/${username}`;
     const queryUrl2 = `https://api.github.com/users/${username}/repos`;
@@ -21,13 +26,13 @@ var mapsPlace = location.split(' ').replace('+');
   const profile = `<html>
   <head>
   </head>
-  <body>
+  <body style="background-color: ${prompt.color};">
   <h1>${res.data.login}</h1>
   <hr>
   <img src="${res.data.avatar_url}">
   <br>
   <a href="${res.data.url}">Link to Profile</a>
-  <p>Location:<a href="https://www.google.com/maps/place/${mapsPlace}">${res.data.location}</a></p>
+  <p>Location: <a href="https://www.google.com/maps/place/${mapsPlace}">${res.data.location}</a></p>
   <p>${res.data.bio}</p>
   <br>
   <h2>Stats</h2>
@@ -50,7 +55,7 @@ axios.get(queryUrl2).then(function(res) {
  // console.log(res);
   var stars = 0;
   for (i = 0; i < res.data.length; i++){
-    stars += res.data[1].stargazers_count;
+    stars += res.data[i].stargazers_count;
   }
   console.log(stars);
 
@@ -91,6 +96,17 @@ axios.get(queryUrl2).then(function(res) {
 });
 });
 });
+/*
+function({color}){
+  var html = "index.html";
+    html.setAttribute("style", "background-color: " + color + ";");
+});
+function({color}){
+
+    var html = "index.html";
+    html.setAttribute("style", "background-color: " + color + ";");
+  })
+  );
 /*
 //var fs = require('fs'),
     convertFactory = require('electron-html-to');
