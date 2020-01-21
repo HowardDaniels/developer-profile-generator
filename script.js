@@ -4,29 +4,31 @@ const inquirer = require("inquirer");
 
 inquirer
   .prompt([{
+    type: "input",
     message: "Enter your GitHub username.",
     name: "username"
   },
   {
+    type: "input",
     message: "What color would you like as your resume background?",
     name: "color"
   }
 ])
-  .then(function({ username }) {
-    const queryUrl = `https://api.github.com/users/${username}`;
-    const queryUrl2 = `https://api.github.com/users/${username}/repos`;
+  .then(function( answers ) {
+    const queryUrl = `https://api.github.com/users/${answers.username}`;
+    const queryUrl2 = `https://api.github.com/users/${answers.username}/repos`;
 
 axios.get(queryUrl).then(function(res) {
   
 console.log(res);
 
 var location = res.data.location;
-var mapsPlace = location.split(' ').replace('+');
+var mapsPlace = location.split(' ').join('+');
 
   const profile = `<html>
   <head>
   </head>
-  <body style="background-color: ${prompt.color};">
+  <body style="background-color: ${answers.color};">
   <h1>${res.data.login}</h1>
   <hr>
   <img src="${res.data.avatar_url}">
@@ -59,7 +61,9 @@ axios.get(queryUrl2).then(function(res) {
   }
   console.log(stars);
 
-  const starCount = `<li>Stars: ${stars}</li>
+ //document.getElementById("stars").remove();
+
+  const starCount = `<li id="stars">Stars: ${stars}</li>
   </ul>
   </body>
   </html>`;
