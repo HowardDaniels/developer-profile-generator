@@ -1,4 +1,6 @@
 const fs = require("fs");
+const pdf = require('html-pdf');
+const html = fs.readFileSync('./index.html', 'utf8');
 const axios = require("axios");
 const inquirer = require("inquirer");
 
@@ -74,7 +76,7 @@ axios.get(queryUrl2).then(function(res) {
     if (err) {
       throw err;
     }
-
+/*
     convertFactory = require('electron-html-to');
 
     fs.readFile('index.html', 'utf8', (err, htmlString) => {
@@ -101,6 +103,11 @@ axios.get(queryUrl2).then(function(res) {
   /* const stars = ${} */
 });
 });
+});
+
+pdf.create(html, options).toFile('./profile.pdf', function(err, res) {
+  if (err) return console.log(err);
+  console.log(res); // { filename: '/app/businesscard.pdf' }
 });
 /*
 function({color}){
