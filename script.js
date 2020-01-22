@@ -5,12 +5,12 @@ const inquirer = require("inquirer");
 inquirer
   .prompt([{
     type: "input",
-    message: "Enter your GitHub username.",
+    message: "GitHub username:",
     name: "username"
   },
   {
     type: "input",
-    message: "What color would you like as your resume background?",
+    message: "Favorite color:",
     name: "color"
   }
 ])
