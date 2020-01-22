@@ -33,9 +33,11 @@ var mapsPlace = location.split(' ').join('+');
   <hr>
   <img src="${res.data.avatar_url}">
   <br>
+  <strong>
   <a href="${res.data.url}">Link to Profile</a>
   <p>Location: <a href="https://www.google.com/maps/place/${mapsPlace}">${res.data.location}</a></p>
-  <p>${res.data.bio}</p>
+  <p><i>${res.data.bio}</i></p>
+  </strong>
   <br>
   <h2>Stats</h2>
   <ul>
