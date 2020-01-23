@@ -76,7 +76,7 @@ axios.get(queryUrl2).then(function(res) {
     if (err) {
       throw err;
     }
-/*
+
     convertFactory = require('electron-html-to');
 
     fs.readFile('index.html', 'utf8', (err, htmlString) => {

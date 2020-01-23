@@ -18,6 +18,7 @@
   "homepage": "https://github.com/HowardDaniels/developer-profile-generator#readme",
   "dependencies": {
     "electron": "^5.0.12",
+    "electron-html-to": "^2.6.0",
     "inquirer": "^7.0.3"
   }
 }
