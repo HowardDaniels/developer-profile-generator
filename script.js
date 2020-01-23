@@ -1,6 +1,6 @@
 const fs = require("fs");
 const pdf = require('html-pdf');
-const html = fs.readFileSync('./index.html', 'utf8');
+const html = fs.readFileSync('index.html', 'utf8');
 const axios = require("axios");
 const inquirer = require("inquirer");
 
@@ -76,7 +76,7 @@ axios.get(queryUrl2).then(function(res) {
     if (err) {
       throw err;
     }
-
+/*
     convertFactory = require('electron-html-to');
 
     fs.readFile('index.html', 'utf8', (err, htmlString) => {
