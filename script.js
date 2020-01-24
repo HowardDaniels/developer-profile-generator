@@ -1,6 +1,6 @@
 const fs = require("fs");
-const pdf = require('html-pdf');
-const html = fs.readFileSync('index.html', 'utf8');
+//const pdf = require('html-pdf');
+// const html = fs.readFileSync('index.html', 'utf8');
 const axios = require("axios");
 const inquirer = require("inquirer");
 
@@ -104,11 +104,11 @@ axios.get(queryUrl2).then(function(res) {
 });
 });
 });
-
+/*
 pdf.create(html, options).toFile('./profile.pdf', function(err, res) {
   if (err) return console.log(err);
   console.log(res); // { filename: '/app/businesscard.pdf' }
-});
+}); */
 /*
 function({color}){
   var html = "index.html";
